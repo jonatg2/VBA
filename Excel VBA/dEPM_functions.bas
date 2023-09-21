@@ -93,6 +93,18 @@ Function CalendarPeriod(Cube As String, Period As String, InputDate As Date) As 
                     End If
             Next
         
+                'Monthly
+        Case Is = "MTD"
+            For i = LBound(PeriodClass, 1) To UBound(PeriodClass, 1)
+                    If PeriodClass(i, 0) = sMonth Then
+                        sQuarter = PeriodClass(i, 1)
+                        sMonth2 = PeriodClass(i, 2)
+                        CalendarPeriod = RootYear & ".[PRC/2_" & sYear & sQuarter & "_MTD]" _
+                        & ".[PRC/2_" & sYear & sMonth2 & "_MTD]"
+                        Exit For
+                    End If
+            Next
+
         'Life to Date
         Case Is = "LTD"
             For i = LBound(PeriodClass, 1) To UBound(PeriodClass, 1)
