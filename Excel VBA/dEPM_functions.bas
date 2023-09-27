@@ -93,7 +93,7 @@ Function CalendarPeriod(Cube As String, Period As String, InputDate As Date) As 
                     End If
             Next
         
-                'Monthly
+        'Month to Date
         Case Is = "MTD"
             For i = LBound(PeriodClass, 1) To UBound(PeriodClass, 1)
                     If PeriodClass(i, 0) = sMonth Then
