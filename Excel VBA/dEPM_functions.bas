@@ -525,7 +525,7 @@ On Error Resume Next
             End If
         
         'Expenses - Marketing
-        Case 850000 To 859000
+        Case 850000 To 859100
             If AccountInt = 850000 Then
                 RootFormula = "[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_NET INCOME].[PRC/2_EXPENSES].[PRC/2_850000]"
             Else
