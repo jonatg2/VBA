@@ -1,6 +1,17 @@
 Attribute VB_Name = "dEPM_functions"
 Option Explicit
 
+Function Scenario(ScenarioType as String) As String
+    Select Case ScenarioType
+        Case "Actuals"
+            Scenario = "[GLTOT_SCENARIO].[PRC].[PRC/1].[PRC/2]"
+        Case "OpExBudget"
+            Scenario = "[GLTOT_SCENARIO].[PRC].[PRC/5]"
+        Case "CapExBudget"
+            Scenario = "[GLTOT_SCENARIO].[PRC].[PRC/7]"
+    End Select
+End Function
+
 Function CalendarPeriod(Cube As String, Period As String, InputDate As Date) As String
         Dim PeriodClass(11, 2) As String
         Dim RootFormula, RootFormulaLTD, RootFormulaYTD, RootYear, RootYearLTD,RootYearYTD, sMonth, sYear, sQuarter, sMonth2 As String
@@ -133,12 +144,12 @@ Function CalendarPeriod(Cube As String, Period As String, InputDate As Date) As 
 End Function
 
 Function ChartAccount(Account As String) As String
-On Error Resume Next
-        Dim RootFormula As String
-        Dim AccountInt As Long
+    On Error Resume Next
+    Dim RootFormula As String
+    Dim AccountInt As Long
         
     'Formulas
-        AccountInt = Int(Account)
+    AccountInt = Int(Account)
 
 
 
@@ -336,7 +347,7 @@ On Error Resume Next
         Case 204000 To 204999
             If AccountInt = 204000 Then
                 RootFormula = "[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_LIABILITIES AND NET ASSE].[PRC/2_TOTAL LIABILITIES].[PRC/2_LIABILITIES].[PRC/2_204000]"
-            ElseIf AccountInt >= 204610 And AccountInt <= 204640 Then
+            ElseIf AccountInt >= 204610 And AccountInt <= 204650 Then
                 RootFormula = "[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_LIABILITIES AND NET ASSE].[PRC/2_TOTAL LIABILITIES].[PRC/2_LIABILITIES].[PRC/2_204000].[PRC/2_204600].[PRC/" & Account & "]"
             Else
                 RootFormula = "[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_LIABILITIES AND NET ASSE].[PRC/2_TOTAL LIABILITIES].[PRC/2_LIABILITIES].[PRC/2_204000].[PRC/" & Account & "]"
