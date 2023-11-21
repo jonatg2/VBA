@@ -7,6 +7,8 @@ Function Scenario(ScenarioType as String) As String
             Scenario = "[GLTOT_SCENARIO].[PRC].[PRC/1].[PRC/2]"
         Case "OpExBudget"
             Scenario = "[GLTOT_SCENARIO].[PRC].[PRC/5]"
+        Case "WorkingBudget"
+            Scenario = "[GLTOT_SCENARIO].[PRC].[PRC/23]"
         Case "CapExBudget"
             Scenario = "[GLTOT_SCENARIO].[PRC].[PRC/7]"
     End Select
