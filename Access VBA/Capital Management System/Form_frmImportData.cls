@@ -72,6 +72,7 @@ If IsNull(Me.cboImportExportFiles) = True Then
     MsgBox "Please select a value from the Files dropdown.", vbInformation, "Select Value"
     Me.cboImportExportFiles.SetFocus
     Me.cboImportExportFiles.Dropdown
+    Exit Sub
 End If
 
 Select Case Me.cboImportExportFiles.Value
@@ -181,8 +182,11 @@ Select Case Me.cboImportExportFiles.Value
                 fs.CopyFile stagingFolder & "qryProjectDataExport_" & Me.cboDivision.Value & ".xlsx", rootFolderProject & "qryProjectDataExport_" & Me.cboDivision.Value & ".xlsx"
                 Beep
                 MsgBox Me.cboDivision.Value & " Export Complete!"
-            
-        End Select
+            End Select
+    Case "VBA Code Export"
+        If User = "jgarcia" Then
+            Call ExportAllCode
+        End If
 ErrHandler:
  If Err.Number = -2147024676 Then
   msg = "Someone in Sharepoint online or in the P&A Sharepoint folder is currently editing the " & Me.cboDivision.Value & " Budget file." _
