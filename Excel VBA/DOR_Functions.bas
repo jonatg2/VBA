@@ -110,8 +110,8 @@ End Function
 
 Function YearCheck(StringVal As String) As Integer
 Dim i, j, YearStr As Integer
-i = 0
-j = 0
+    i = 0
+    j = 0
 Do While j <> 1
 YearStr = (Year(Now) + 1) - i
    If StringVal Like "*" & YearStr & "*" Then
