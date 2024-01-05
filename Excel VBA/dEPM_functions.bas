@@ -795,6 +795,9 @@ End Function
 
 Function Departments(deptNumbers As String) As String
 
+    'Use this function when needing to include multiple departments into a calculation
+    'Deliminate each department with a comma (e.g 0100, 0110)
+
     Dim splitDepartments() As String
     Dim DepartmentGrouping, DepartmentString As String
     Dim i As Long
