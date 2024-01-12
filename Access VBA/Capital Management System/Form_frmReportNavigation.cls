@@ -144,7 +144,13 @@ Else
                 MsgBox "Please select a board agenda date!"
                 Exit Sub
             End If
-            
+        
+        Case "Capital Budget by Division"
+        
+            If IsNull(Me.cboDivision) = False Then
+                DoCmd.OpenReport "Capital Budget by Single Division", acViewReport
+                Exit Sub
+            End If
         End Select
     DoCmd.OpenReport Me.cboReports.Value, acViewReport
 End If
@@ -231,6 +237,16 @@ ElseIf IsNull(Me.txtMonthEndDate) = True Then
     MsgBox "Please select a month ending date!"
     Exit Sub
 Else
+    Select Case Me.cboReports.Value
+        Case "Capital Budget by Division"
+            If IsNull(Me.cboDivision) = False Then
+                DoCmd.OpenReport "Capital Budget by Single Division", acViewReport
+                DoCmd.OutputTo acOutputReport, "Capital Budget by Single Division", acFormatPDF, , True
+                DoCmd.Close acReport, "Capital Budget by Single Division"
+                Exit Sub
+            End If
+    End Select
+
     DoCmd.OpenReport (Me.cboReports.Value), acViewReport
     DoCmd.OutputTo acOutputReport, Me.cboReports.Value, acFormatPDF, , True
     DoCmd.Close acReport, Me.cboReports.Value

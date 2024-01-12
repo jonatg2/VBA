@@ -23,6 +23,15 @@ DoCmd.Close acReport, TentativeSchedule
 
 End Sub
 
+Private Sub cmdPDFexport_Click()
+On Error Resume Next
+    Dim rExport As String
+    rExport = "Project Spending Master"
+    DoCmd.OpenReport (rExport), acViewReport
+    DoCmd.OutputTo acOutputReport, rExport, acFormatPDF, , True
+    DoCmd.Close acReport, rExport
+End Sub
+
 Private Sub txtCapitalizationDate_AfterUpdate()
 If IsNull(Me.txtCapitalizationDate) = False Then
     Me.txtCapitalizationDate.Value = GetNowLast(Me.txtCapitalizationDate)
