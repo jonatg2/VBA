@@ -145,6 +145,24 @@ Function CalendarPeriod(Cube As String, Period As String, InputDate As Date) As 
 
 End Function
 
+Function glMeasures(Account As String) As String
+On Error GoTo ErrHandler
+
+Select Case Int(Left(Account, 6))
+    Case Is >= 990000
+        glMeasures = "[GLTOT_MEASURES].[UNITSAMOUNT]"
+    Case Is < 990000
+        glMeasures = "[GLTOT_MEASURES].[FUNCTIONALAMOUNT]"
+    End Select
+
+ErrHandler:
+    Select Case Err.Number
+        Case Is = 13
+            glMeasures = "[GLTOT_MEASURES].[FUNCTIONALAMOUNT]"
+    End Select
+
+End Function
+
 Function ChartAccount(Account As String) As String
     On Error Resume Next
     Dim RootFormula As String
