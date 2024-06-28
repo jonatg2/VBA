@@ -14,6 +14,16 @@ Function Scenario(ScenarioType as String) As String
     End Select
 End Function
 
+Function AcctDescription(AccountString As String, Index As Integer) As String
+Dim AcctArrary() As String
+Dim DescriptionLen As Integer
+
+AcctArrary = Split(AccountString, "-")
+DescriptionLen = Len(Trim(AccountString)) - Len(Trim(AcctArrary(Index))) - 3
+AcctDescription = Trim(Right(AccountString, DescriptionLen))
+
+End Function
+
 Function CalendarPeriod(Cube As String, Period As String, InputDate As Date) As String
         Dim PeriodClass(11, 2) As String
         Dim RootFormula, RootFormulaLTD, RootFormulaYTD, RootYear, RootYearLTD,RootYearYTD, sMonth, sYear, sQuarter, sMonth2 As String
@@ -612,6 +622,8 @@ Function ChartAccount(Account As String) As String
         'Stat accounts
         Case 991101 To 999025
                 RootFormula = "[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_STAT].[PRC/" & Account & "]"
+        Case Else
+            RootFormula = "Account not classified!"
                 
     End Select
 
@@ -631,6 +643,8 @@ Function ChartAccount(Account As String) As String
         Case 83550
             RootFormula = "[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_NET INCOME].[PRC/2_EXPENSES].[PRC/2_835500]"
 
+        Case Else
+            RootFormula = "Account not classified!"
     End Select
     'this case statement is for the top level accounts (REVENUES, COGS, COMPS, etc.)
     Select Case Account
@@ -639,7 +653,8 @@ Function ChartAccount(Account As String) As String
         
         Case "Net Income"
             RootFormula ="[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_NET INCOME]"
-
+        Case Else
+            RootFormula = "Account not classified!"
     End Select
 
     ChartAccount = RootFormula
