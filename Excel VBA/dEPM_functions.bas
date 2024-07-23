@@ -622,8 +622,6 @@ Function ChartAccount(Account As String) As String
         'Stat accounts
         Case 991101 To 999025
                 RootFormula = "[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_STAT].[PRC/" & Account & "]"
-        Case Else
-            RootFormula = "Account not classified!"
                 
     End Select
 
@@ -643,8 +641,6 @@ Function ChartAccount(Account As String) As String
         Case 83550
             RootFormula = "[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_NET INCOME].[PRC/2_EXPENSES].[PRC/2_835500]"
 
-        Case Else
-            RootFormula = "Account not classified!"
     End Select
     'this case statement is for the top level accounts (REVENUES, COGS, COMPS, etc.)
     Select Case Account
@@ -653,8 +649,6 @@ Function ChartAccount(Account As String) As String
         
         Case "Net Income"
             RootFormula ="[GLTOT_CHARTACCOUNT].[PRC].[PRC/2_TOP_NODE].[PRC/2_NET INCOME]"
-        Case Else
-            RootFormula = "Account not classified!"
     End Select
 
     ChartAccount = RootFormula
